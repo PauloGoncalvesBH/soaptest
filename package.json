@@ -15,11 +15,9 @@
   "bugs": {
     "url": "https://github.com/PauloGoncalvesBH/soaptest/issues"
   },
-  "bin": {
-    "mocha": "../.bin/_mocha"
-  },
   "keywords": [
     "api",
+    "axios",
     "soap",
     "testing",
     "xml"
@@ -27,7 +25,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "chai": "^4.2.0",
-    "mocha": "^7.1.0",
+    "xml-formatter": "^1.2.0",
     "xml-js": "^1.6.11"
   },
   "devDependencies": {
@@ -35,13 +33,14 @@
     "@commitlint/config-conventional": "^8.3.4",
     "cz-conventional-changelog": "^3.1.0",
     "husky": "^4.2.3",
+    "mocha": "^7.1.0",
     "standard": "^14.3.1"
   },
   "scripts": {
     "commit": "npx git-cz",
     "lint": "standard",
     "lint:fix": "standard --fix",
-    "test": "mocha test"
+    "test": "mocha test/test"
   },
   "config": {
     "commitizen": {

@@ -1,12 +1,14 @@
 
-const axios = require('axios').default
+const axios = require('axios')
 const { xml2json } = require('xml-js')
+const indentXml = require('xml-formatter')
 
 const utils = require('./constants_and_utils/utils')
 
 module.exports = function request (opts = {
   url: '',
   xml: '',
+  headers: {},
   timeout: utils.timeout.timeoutInMilliseconds,
   proxy: {},
   maxContentLength: Infinity,
@@ -15,16 +17,18 @@ module.exports = function request (opts = {
   const {
     url,
     xml,
+    headers,
     timeout,
     proxy,
     maxContentLength,
     extraOpts
   } = opts
   return new Promise((resolve, reject) => {
+    axios.defaults.headers.post['Content-Type'] = 'text/xml;charset=UTF-8';
     axios({
       method: 'post',
       url,
-      headers: '',
+      headers,
       data: xml,
       timeout,
       proxy,
@@ -32,31 +36,28 @@ module.exports = function request (opts = {
       ...extraOpts
     }).then((response) => {
       resolve({
+        request: response.config,
         response: {
-          body: response.data,
+          body: {
+            xml: indentXml(response.data, {indentation: '  ', collapseContent: true}),
+            json: xml2json(response.data, {spaces: 2, compact: true})
+          },
           headers: response.headers,
           statusCode: response.status,
-          json: {
-            body: xml2json(response.data),
-            headers: xml2json(response.headers)
-          }
-        },
-        request: {
-          config: response.config,
-          request: response.request
+          statusText: response.statusText
         }
       })
     }).catch((error) => {
-      if (error.response) {
-        console.log(error.response.data)
-        console.log(error.response.status)
-        console.log(error.response.headers)
-      } else if (error.request) {
-        console.log(error.request)
-      } else {
+      // if (error.response) {
+      //   console.log(error.response.data)
+      //   console.log(error.response.status)
+      //   console.log(error.response.headers)
+      // } else if (error.request) {
+      //   console.log(error.request)
+      // } else {
         console.log('Error', error.message)
-      }
-      // reject(error)
+      // }
+      resolve(error)
     })
   })
 }

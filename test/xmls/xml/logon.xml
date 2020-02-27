@@ -1,0 +1,4 @@
+<ser:logon>
+   <ser:in0>USUARIO</ser:in0>
+   <ser:in1>12345678</ser:in1>
+</ser:logon>
