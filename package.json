@@ -1,0 +1,62 @@
+{
+  "name": "soaptest",
+  "version": "0.0.1",
+  "description": "Test SOAP request using JS",
+  "license": "MIT",
+  "author": "Paulo Gonçalves <paulorochag@hotmail.com> (https://www.linkedin.com/in/paulo-goncalves/)",
+  "main": "index.js",
+  "files": [
+    "src/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PauloGoncalvesBH/soaptest.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PauloGoncalvesBH/soaptest/issues"
+  },
+  "bin": {
+    "mocha": "../.bin/_mocha"
+  },
+  "keywords": [
+    "api",
+    "soap",
+    "testing",
+    "xml"
+  ],
+  "dependencies": {
+    "axios": "^0.19.2",
+    "chai": "^4.2.0",
+    "mocha": "^7.1.0",
+    "xml-js": "^1.6.11"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "cz-conventional-changelog": "^3.1.0",
+    "husky": "^4.2.3",
+    "standard": "^14.3.1"
+  },
+  "scripts": {
+    "commit": "npx git-cz",
+    "lint": "standard",
+    "lint:fix": "standard --fix",
+    "test": "mocha test"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  }
+}
