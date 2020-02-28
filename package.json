@@ -23,7 +23,7 @@
     "xml"
   ],
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.19.0",
     "chai": "^4.2.0",
     "xml-formatter": "^1.2.0",
     "xml-js": "^1.6.11"

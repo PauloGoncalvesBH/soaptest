@@ -1,5 +1,5 @@
 
-const axios = require('axios')
+const axios = require('axios').default
 const { xml2json } = require('xml-js')
 const indentXml = require('xml-formatter')
 
@@ -8,7 +8,7 @@ const utils = require('./constants_and_utils/utils')
 module.exports = function request (opts = {
   url: '',
   xml: '',
-  headers: {},
+  headers: '',
   timeout: utils.timeout.timeoutInMilliseconds,
   proxy: {},
   maxContentLength: Infinity,
@@ -24,7 +24,8 @@ module.exports = function request (opts = {
     extraOpts
   } = opts
   return new Promise((resolve, reject) => {
-    axios.defaults.headers.post['Content-Type'] = 'text/xml;charset=UTF-8';
+    // axios.defaults.headers.post['Content-Type'] = 'text/xml;charset=UTF-8';
+    // axios.defaults.headers.post['Content-Type'] = 'text/xml;charset=UTF-8';
     axios({
       method: 'post',
       url,
@@ -39,8 +40,8 @@ module.exports = function request (opts = {
         request: response.config,
         response: {
           body: {
-            xml: indentXml(response.data, {indentation: '  ', collapseContent: true}),
-            json: xml2json(response.data, {spaces: 2, compact: true})
+            xml: indentXml(response.data, {indentation: '  ', collapseContent: true}).split('&lt;').join('<'),
+            json: xml2json(xml, {spaces: 2, compact: true})
           },
           headers: response.headers,
           statusCode: response.status,

@@ -1,0 +1,19 @@
+<ser:getDadosProcesso>
+ <ser:in0><![CDATA[<?xml version="1.0" encoding="iso-8859-1"?>
+<Message>
+ <MessageId>
+ <ServiceId>ConsultaProcesso</ServiceId>
+ <Version>1.0</Version>
+ <MsgDesc>ConsultaProcesso</MsgDesc>
+ <Code>DATA_SEM_FORMATACAO</Code>
+ <FromAddress>CPF</FromAddress>
+ <ToAddress>CLIENTE</ToAddress>
+ <Date>DATA_FORMATADA</Date>
+ </MessageId>
+ <MessageBody>
+ <Processo>
+ <Numero>PROCESSO</Numero>
+ </Processo>
+ </MessageBody>
+</Message>]]></ser:in0>
+ </ser:getDadosProcesso>
