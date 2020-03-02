@@ -33,11 +33,13 @@ function convertXmlToJson (xml) {
   }
 }
 
-function requiredParam (functionWithoutParam, requiredParameter) {
+function requiredParam (functionWithoutParam, requiredParameter, requiredParameterName, desirableType = 'string') {
   const requiredParamError = new Error(
-    `Parameter '${requiredParameter}' is missing at function '${
+    `Parameter '${requiredParameterName}' is missing at function '${
       functionWithoutParam.name
-    }(..)'. \nFill the required parameter.`
+    }(..)'.
+      Must be type ${desirableType}. Received ${requiredParameter}.
+      Fill the required parameter.`
   )
   Error.captureStackTrace(requiredParamError, functionWithoutParam)
   throw requiredParamError

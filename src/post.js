@@ -7,14 +7,20 @@ const { error, successful } = require('./response')
 const { timeoutInMilliseconds } = timeout
 
 module.exports = async function post ({
-  url = requiredParam(post, 'url'),
-  xml = requiredParam(post, 'xml'),
-  headers = '',
+  url,
+  xml,
+  headers = {},
   timeout = timeoutInMilliseconds,
   proxy = {},
   maxContentLength = Infinity,
   extraOpts = {}
 }) {
+  if (typeof url === 'undefined') { requiredParam(post, url, 'url') }
+  if (typeof xml === 'undefined') { requiredParam(post, xml, 'xml', 'string or plain object') }
+
+  axios.defaults.headers['User-Agent'] = 'SoapTest'
+  axios.defaults.headers['Content-Type'] = 'text/xml'
+
   try {
     const response = await axios({
       method: 'post',
