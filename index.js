@@ -1,5 +1,3 @@
-module.exports = {
-  post: require('./src/request'),
-  chai: require('chai'),
-  setTimeout: require('./src/setValues').setTimeout
-}
+module.exports = require('./src/post')
+module.exports.chai = require('chai')
+module.exports.setTimeout = require('./src/config').setTimeout

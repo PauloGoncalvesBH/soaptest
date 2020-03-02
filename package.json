@@ -25,7 +25,6 @@
   "dependencies": {
     "axios": "^0.19.0",
     "chai": "^4.2.0",
-    "xml-formatter": "^1.2.0",
     "xml-js": "^1.6.11"
   },
   "devDependencies": {
@@ -40,7 +39,7 @@
     "commit": "npx git-cz",
     "lint": "standard",
     "lint:fix": "standard --fix",
-    "test": "mocha test/test"
+    "test": "mocha test/test.js --timeout 10000"
   },
   "config": {
     "commitizen": {

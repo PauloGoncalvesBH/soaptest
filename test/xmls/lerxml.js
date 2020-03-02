@@ -1,12 +1,11 @@
-const fs = require('fs');
+const fs = require('fs')
 const { join } = require('path')
 
 const lerxml = nomexml => {
-    const diretorio = join(__dirname, `./xml/${nomexml}.xml`)
-    xmlajustado = fs.readFileSync(diretorio, 'utf-8')
+  const diretorio = join(__dirname, `./xml/${nomexml}.xml`)
+  const xmlajustado = fs.readFileSync(diretorio, 'utf-8')
 
-
-    const xmlbase = `
+  const xmlbase = `
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="ServicoMP">
     <soapenv:Header/>
     <soapenv:Body>
@@ -14,7 +13,7 @@ const lerxml = nomexml => {
     </soapenv:Body>
 </soapenv:Envelope>`
 
-    return xmlbase.replace('SUBSTITUIR', xmlajustado)
+  return xmlbase.replace('SUBSTITUIR', xmlajustado)
 }
 
 module.exports = lerxml
